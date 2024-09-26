@@ -33,6 +33,7 @@ def aantal_kluizen_vrij():
     safes.close()
 
     # Return the amount of available safes
+    print(f"Er is/zijn nog {12-count} kluis/kluizen beschikbaar!")
     return 12 - count
 
 
@@ -47,6 +48,7 @@ def nieuwe_kluis():
 
     # Check if the given password is valid
     if len(usrInp) < 4 or usrInp.find(";") != -1:
+        print("Uw wachtwoord mag geen ';' bevatten en moet uit minimaal 4 tekens bestaan!")
         return -1
 
     # Count the amount of lines in the file to find how many safes are being used
@@ -55,6 +57,7 @@ def nieuwe_kluis():
 
     # Check if there is a safe available
     if count == 12:
+        print("Er zijn geen kluizen meer beschikbaar...")
         return -2
 
     # Generate a list with occupied safes
@@ -71,19 +74,12 @@ def nieuwe_kluis():
     safes.write(f"{nbr};{usrInp}\n")
 
     # Close the file from reading and writing
+    print(f"Uw kluisnummer is: {nbr}")
     safes.close()
     return nbr
 
 
 def kluis_openen():
-    """
-    Laat de gebruiker een kluisnummer invoeren, en direct daarna de bijbehorende
-    kluiscode. Indien deze combinatie voorkomt in het tekstbestand met de kluizen
-    die in gebruik zijn, is het resultaat van de functie True, anders False.
-
-    Returns:
-        bool: True als de ingevoerde combinatie correct is, anders False
-    """
     # Open "testkluizen.txt" for read only
     safes = open('testkluizen.txt', 'r')
 
@@ -100,6 +96,7 @@ def kluis_openen():
 
     # Close the file from reading
     safes.close()
+    print(f"Kluis {safeN} is open")
     return combo
 
 
